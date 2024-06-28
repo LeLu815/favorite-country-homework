@@ -4,7 +4,6 @@ import { CountryObj } from "../api/country.type";
 import CountryCard from "./CountryCard";
 
 function CountryList() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [contries, setContries] = useState<CountryObj[]>([]);
   const [selectedContries, setSelectedContries] = useState<CountryObj[]>([]);
 
@@ -29,11 +28,7 @@ function CountryList() {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    countryApi
-      .getCountryAll()
-      .then((response) => setContries(response))
-      .then(() => setIsLoading(false));
+    countryApi.getCountryAll().then((response) => setContries(response));
   }, []);
   return (
     <div className="container mx-auto p-6">
